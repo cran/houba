@@ -2,8 +2,8 @@ Package: houba
 Type: Package
 Title: Manipulation of (Large) Memory-Mapped Objects (Vectors, Matrices
         and Arrays)
-Version: 0.1.0
-Date: 2025-09-17
+Version: 0.1.1
+Date: 2026-02-20
 Authors@R: c(
     person("Hervé", "Perdry", 
     email = "herve.perdry@universite-paris-saclay.fr",
@@ -23,8 +23,8 @@ VignetteBuilder: knitr
 LinkingTo: Rcpp
 RoxygenNote: 7.3.2
 NeedsCompilation: yes
-Packaged: 2025-09-23 12:44:45 UTC; rv
+Packaged: 2026-02-20 18:03:51 UTC; rv
 Author: Hervé Perdry [aut, cre],
   Juliette Meyniel [aut]
 Repository: CRAN
-Date/Publication: 2025-09-30 08:30:20 UTC
+Date/Publication: 2026-02-20 18:30:02 UTC
