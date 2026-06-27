@@ -1,4 +1,9 @@
 extract_mmatrix <- function(x, i, j, drop = TRUE) {
+  if(!is.numeric(i)) i <- match(i, x@dimnames[[1]])
+  if(!is.numeric(j)) j <- match(j, x@dimnames[[2]])
+  if(any(i < 0)) i <- (1:x@dim[1])[i]
+  if(any(j < 0)) j <- (1:x@dim[2])[j]
+
   I <- as.integer(i) - 1L
   J <- as.integer(j) - 1L
   # target size
@@ -6,11 +11,13 @@ extract_mmatrix <- function(x, i, j, drop = TRUE) {
   if(x@file == "") { # it's memory so... keep it so
     T <- mmatrix(x@datatype, length(I), length(J), "")
     extract_mmatrix_to_mmatrix(x@ptr, x@datatype, I, J, T@ptr)
-    T
+    dimnames(T) <- dimnames_extract(x@dimnames, list(i, j))
+    drop_dimensions(T, drop)
   } else if(tsize > houba("max.size")) { # it's on disk, and large -> new file
     T <- mmatrix(x@datatype, length(I), length(J))
     extract_mmatrix_to_mmatrix(x@ptr, x@datatype, I, J, T@ptr)
-    T
+    dimnames(T) <- dimnames_extract(x@dimnames, list(i, j))
+    drop_dimensions(T, drop)
   } else { # it's on disk, and small -> convert to R object
     if(x@datatype == "float" | x@datatype == "double") {
       T <- matrix(NA_real_, length(I), length(J))
@@ -20,14 +27,15 @@ extract_mmatrix <- function(x, i, j, drop = TRUE) {
       stop("Unsupported data type")
     }
     extract_mmatrix_to_R(x@ptr, x@datatype, I, J, T)
-    if(drop & (nrow(T) == 1 | ncol(T) == 1)) 
-      as.vector(T)
-    else
-      T
+    dimnames(T) <- dimnames_extract(x@dimnames, list(i, j))
+    if(drop) drop(T) else T
   }
 }
 
-extract_mvector <- function(x, i) {
+# ceci est un duplicat de extract_mvector sauf pour la gestion des noms...
+# cette variante est appelée quand on fait x[1:2] sur une matrice, par exemple
+extract_mmatrix_as_mvector <- function(x, i) {
+  if(any(i < 0)) i <- (1:length(x))[i]
   I <- as.integer(i) - 1L
   # target size
   tsize <- length(I) 
@@ -53,7 +61,7 @@ extract_mvector <- function(x, i) {
 }
 
 #' @rdname extract 
-setMethod("[", c(x = "mmatrix", i = "numeric", j = "numeric", drop = "ANY"),
+setMethod("[", c(x = "mmatrix", i = "numericOrCharacter", j = "numericOrCharacter", drop = "ANY"),
   function(x, i, j, ..., drop) {
     if(...length() > 0) stop("Bad number of dimensions")
     extract_mmatrix(x, i, j, drop)
@@ -61,7 +69,7 @@ setMethod("[", c(x = "mmatrix", i = "numeric", j = "numeric", drop = "ANY"),
 )
 
 #' @rdname extract 
-setMethod("[", c(x = "mmatrix", i = "missing", j = "numeric", drop = "ANY"),
+setMethod("[", c(x = "mmatrix", i = "missing", j = "numericOrCharacter", drop = "ANY"),
   function(x, i, j, ..., drop) {
     if(...length() > 0) stop("Bad number of dimensions")
     extract_mmatrix(x, 1:nrow(x), j, drop)
@@ -69,10 +77,10 @@ setMethod("[", c(x = "mmatrix", i = "missing", j = "numeric", drop = "ANY"),
 )
 
 #' @rdname extract 
-setMethod("[", c(x = "mmatrix", i = "numeric", j = "missing", drop = "ANY"),
+setMethod("[", c(x = "mmatrix", i = "numericOrCharacter", j = "missing", drop = "ANY"),
   function(x, i, j, ..., drop) {
     if(nargs() == 2L) { # appel de type x[i]
-      extract_mvector(x, i)
+      extract_mmatrix_as_mvector(x, i)
     } else {
       if(...length() > 0) stop("Bad number of dimensions")
       extract_mmatrix(x, i, 1:ncol(x), drop)
@@ -88,23 +96,5 @@ setMethod("[", c(x = "mmatrix", i = "missing", j = "missing", drop = "ANY"),
   }
 )
 
-# -------------- methode pour les vecteurs, j toujours missing
-              
-#' @rdname extract 
-setMethod("[", c(x = "mvector", i = "numeric", j = "missing", drop = "ANY"),
-  function(x, i, j, ..., drop) {
-    if(...length() > 0) stop("Bad number of dimensions")
-    extract_mvector(x, i)
-  }
-)
 
-# ceci fait une copie (selon la valeur de houba("max.size"))... pourquoi pas.
-
-#' @rdname extract
-setMethod("[", c(x = "mvector", i = "missing", j = "missing", drop = "ANY"),
-  function(x, i, j, ..., drop) {
-    if(...length() > 0) stop("Bad number of dimensions")
-    extract_mvector(x, 1:x@length)
-  }
-)
 

@@ -12,7 +12,7 @@
 
 <meta name="author" content="Juliette Meyniel and Hervé Perdry" />
 
-<meta name="date" content="2026-02-20" />
+<meta name="date" content="2026-06-27" />
 
 <title>houba</title>
 
@@ -327,7 +327,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">houba</h1>
 <h3 class="subtitle">Yet another package for memory-mapped objects</h3>
 <h4 class="author">Juliette Meyniel and Hervé Perdry</h4>
-<h4 class="date">2026-02-20</h4>
+<h4 class="date">2026-06-27</h4>
 
 
 
@@ -382,7 +382,7 @@ div.sourceCode {
 <a class="sourceLine" id="cb1-2" title="2">A</a></code></pre></div>
 <pre><code>## A mvector of length 100 
 ## data type:  double 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf56f62822 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc4615be5e8 
 ## --- excerpt
 ## [1] 0 0 0 0 0</code></pre>
 <p>We can specify the filename for the backing file. Here we create a memory-mapped matrix:</p>
@@ -391,7 +391,7 @@ div.sourceCode {
 <a class="sourceLine" id="cb3-3" title="3">B</a></code></pre></div>
 <pre><code>## A mmatrix with 12 rows and 10 cols
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/integers120 
+## Location: file  /tmp/RtmpIzY6Iv/integers120 
 ## --- excerpt
 ##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]    0    0    0    0    0
@@ -415,7 +415,7 @@ div.sourceCode {
 <a class="sourceLine" id="cb5-4" title="4">A</a></code></pre></div>
 <pre><code>## A mmatrix with 4 rows and 5 cols
 ## data type:  float 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf7ab74cb0 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc43dc2d7c8 
 ## --- excerpt
 ##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]    1    5    9   13   17
@@ -428,7 +428,7 @@ div.sourceCode {
 <a class="sourceLine" id="cb7-3" title="3">V</a></code></pre></div>
 <pre><code>## A mvector of length 10 
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf7af552b1 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc44029997 
 ## --- excerpt
 ## [1] 1 2 3 4 5</code></pre>
 <p>These methods also have an argument <code>filename</code>.</p>
@@ -446,7 +446,7 @@ div.sourceCode {
 <a class="sourceLine" id="cb11-2" title="2">C</a></code></pre></div>
 <pre><code>## A read-only mvector of length 120 
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/integers120 
+## Location: file  /tmp/RtmpIzY6Iv/integers120 
 ## --- excerpt
 ## [1] 0 0 0 0 0</code></pre>
 <p>Providing an incompatible size will raise an error.</p>
@@ -458,7 +458,7 @@ div.sourceCode {
 <a class="sourceLine" id="cb15-2" title="2">C</a></code></pre></div>
 <pre><code>## A read-only mvector of length 120 
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/integers120 
+## Location: file  /tmp/RtmpIzY6Iv/integers120 
 ## --- excerpt
 ## [1] 1 2 3 4 0</code></pre>
 <p>However this may not work always well, depending on your system, or when a file is mapped through several R sessions. The function <code>flush</code> makes sure all changes are written on disk:</p>
@@ -467,7 +467,7 @@ div.sourceCode {
 <a class="sourceLine" id="cb17-3" title="3">C</a></code></pre></div>
 <pre><code>## A read-only mvector of length 120 
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/integers120 
+## Location: file  /tmp/RtmpIzY6Iv/integers120 
 ## --- excerpt
 ## [1] 2 3 4 5 0</code></pre>
 </div>
@@ -480,7 +480,7 @@ div.sourceCode {
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">B</a></code></pre></div>
 <pre><code>## A mmatrix with 12 rows and 10 cols
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/integers120 
+## Location: file  /tmp/RtmpIzY6Iv/integers120 
 ## --- excerpt
 ##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]    2    0    0    0    0
@@ -496,7 +496,7 @@ div.sourceCode {
 <a class="sourceLine" id="cb23-2" title="2">D</a></code></pre></div>
 <pre><code>## A read-only mmatrix with 12 rows and 10 cols
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC//integers120 
+## Location: file  /tmp/RtmpIzY6Iv//integers120 
 ## --- excerpt
 ##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]    2    0    0    0    0
@@ -516,7 +516,7 @@ div.sourceCode {
 <p>The resulting object maps the same datafile:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">bm[,<span class="dv">1</span>]</a></code></pre></div>
 <pre><code>##  [1] 2 3 4 5 0 0 0 0 0 0 0 0</code></pre>
-<p>Note that alhougj <strong>houba</strong> allows to create descriptor files for marrays, these won’t be accepted by <strong>bigmemory</strong> which doesn’t handle arrays.</p>
+<p>Note that although <strong>houba</strong> allows to create descriptor files for marrays, these won’t be accepted by <strong>bigmemory</strong> which doesn’t handle arrays.</p>
 </div>
 </div>
 <div id="restoring-broken-pointers" class="section level2">
@@ -526,7 +526,7 @@ div.sourceCode {
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">B</a></code></pre></div>
 <pre><code>## A mmatrix with 12 rows and 10 cols
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/integers120 
+## Location: file  /tmp/RtmpIzY6Iv/integers120 
 ## --- excerpt
 ##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]    2    0    0    0    0
@@ -547,7 +547,7 @@ div.sourceCode {
 <a class="sourceLine" id="cb35-2" title="2">B</a></code></pre></div>
 <pre><code>## A mmatrix with 12 rows and 10 cols
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/integers120 
+## Location: file  /tmp/RtmpIzY6Iv/integers120 
 ## --- excerpt
 ##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]    2    0    0    0    0
@@ -563,7 +563,7 @@ div.sourceCode {
 <a class="sourceLine" id="cb37-2" title="2">C</a></code></pre></div>
 <pre><code>## A mmatrix with 12 rows and 10 cols
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf4e7611d9 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc4b1ab522 
 ## --- excerpt
 ##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]    2    0    0    0    0
@@ -584,7 +584,7 @@ div.sourceCode {
 <a class="sourceLine" id="cb39-3" title="3">A</a></code></pre></div>
 <pre><code>## A mmatrix with 3 rows and 4 cols
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf7202a017 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc432e93fe2 
 ## --- excerpt
 ##      [,1] [,2] [,3] [,4]
 ## [1,]    1    4    7   10
@@ -597,7 +597,7 @@ div.sourceCode {
 <a class="sourceLine" id="cb43-2" title="2">A</a></code></pre></div>
 <pre><code>## A mmatrix with 4 rows and 3 cols
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf7202a017 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc432e93fe2 
 ## --- excerpt
 ##      [,1] [,2] [,3]
 ## [1,]    1    5    9
@@ -609,7 +609,7 @@ div.sourceCode {
 <a class="sourceLine" id="cb45-2" title="2">A</a></code></pre></div>
 <pre><code>## A mvector of length 12 
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf7202a017 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc432e93fe2 
 ## --- excerpt
 ## [1] 1 2 3 4 5</code></pre>
 <p>Similarly, you can obtain an marray:</p>
@@ -617,7 +617,7 @@ div.sourceCode {
 <a class="sourceLine" id="cb47-2" title="2">A</a></code></pre></div>
 <pre><code>## A marray with dimensions 2 2 3 
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf7202a017</code></pre>
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc432e93fe2</code></pre>
 </div>
 <div id="accessing-values" class="section level2">
 <h2>Accessing values</h2>
@@ -627,11 +627,11 @@ div.sourceCode {
 <a class="sourceLine" id="cb49-2" title="2">A &lt;-<span class="st"> </span><span class="kw">as.mmatrix</span>(a)</a></code></pre></div>
 <p>Acessing a single element:</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">A[<span class="dv">1</span>,<span class="dv">1</span>]</a></code></pre></div>
-<pre><code>## [1] 79</code></pre>
+<pre><code>## [1] 50</code></pre>
 <p>Accessing a row:</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">A[<span class="dv">1</span>,]</a></code></pre></div>
-<pre><code>##  [1] 79 94 43 52 59 55 11 22 49 64 97 14 71 45 98 16 65 79 65 15 32  5 80 90 16 43 35
-## [28] 18  6 34 66  8 23 35 72 91 74 78 11 28 68 69 41 54 12  7 39 72  8 77</code></pre>
+<pre><code>##  [1] 50  8 67 97 48 40 87 14  9 86 28 44 63 75 25 56 55 34 96 92 81 68 18 72  5 19 74
+## [28]  7 81 66 96 62 90 13 40  5 31 27 55 95 98 72 95 51 10 37 51 12 42 37</code></pre>
 <p>The result here is a R object. When the object is a associated to a file, fhis behaviour actually depends on its size! The default is to return a R object if the result’s size is less than one million, and else to return a memory-mapped object. The aim of this behaviour is to avoid the proliferation of small temporary files, when examining data.</p>
 <p>The limiting size can be changed through the option <code>max.size</code>, as follows:</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="kw">houba</span>(<span class="dt">max.size =</span> <span class="dv">20</span>)</a></code></pre></div>
@@ -639,16 +639,11 @@ div.sourceCode {
 ## [1] 20</code></pre>
 <p>And now, accessing to the first row will sends a new memory-mapped object:</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">A[<span class="dv">1</span>,]</a></code></pre></div>
-<pre><code>## A mmatrix with 1 rows and 50 cols
+<pre><code>## A mvector of length 50 
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf1e98b46a 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc412c2d461 
 ## --- excerpt
-##      [,1]
-## [1,]   79
-## [2,]   94
-## [3,]   43
-## [4,]   52
-## [5,]   59</code></pre>
+## [1] 50  8 67 97 48</code></pre>
 <p>You can set <code>max.size = 0</code> to always get a memory-mapped object.</p>
 <p>Note that when the object is in memory (it has been created with <code>filename = &quot;&quot;</code>), then the result will always be an object of the same type. Use <code>as.vector</code>, <code>as.matrix</code> or <code>as.array</code> for conversion to an R object.</p>
 </div>
@@ -660,28 +655,28 @@ div.sourceCode {
 <a class="sourceLine" id="cb58-3" title="3">A</a></code></pre></div>
 <pre><code>## A mmatrix with 50 rows and 50 cols
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf5fb8a0a2 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc436ff125f 
 ## --- excerpt
 ##      [,1] [,2] [,3] [,4] [,5]
-## [1,]    0   94   43   52   59
+## [1,]    0    8   67   97   48
 ## [2,]   10   10   10   10   10
-## [3,]   49   80   74   68    8
-## [4,]   53    2   16   73   18
-## [5,]   89   39   18   69    4</code></pre>
+## [3,]   94   13   81   55   10
+## [4,]    7   21   29   32   70
+## [5,]   97   10   42   20   28</code></pre>
 <p>Assignement with another memory-mapped object is also possible:</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">V &lt;-<span class="st"> </span><span class="kw">as.mvector</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>, <span class="st">&quot;int&quot;</span>)</a>
 <a class="sourceLine" id="cb60-2" title="2">A[<span class="dv">3</span>,] &lt;-<span class="st"> </span>V</a>
 <a class="sourceLine" id="cb60-3" title="3">A</a></code></pre></div>
 <pre><code>## A mmatrix with 50 rows and 50 cols
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf5fb8a0a2 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc436ff125f 
 ## --- excerpt
 ##      [,1] [,2] [,3] [,4] [,5]
-## [1,]    0   94   43   52   59
+## [1,]    0    8   67   97   48
 ## [2,]   10   10   10   10   10
 ## [3,]    1    2    3    4    5
-## [4,]   53    2   16   73   18
-## [5,]   89   39   18   69    4</code></pre>
+## [4,]    7   21   29   32   70
+## [5,]   97   10   42   20   28</code></pre>
 <p>There is no type promotion. Assigning a floating point value to an integer object will cast it to integer:</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">A[<span class="dv">1</span>,<span class="dv">1</span>] &lt;-<span class="st"> </span>pi</a>
 <a class="sourceLine" id="cb62-2" title="2">A[<span class="dv">1</span>,<span class="dv">1</span>]</a></code></pre></div>
@@ -696,26 +691,26 @@ div.sourceCode {
 <a class="sourceLine" id="cb64-4" title="4">A</a></code></pre></div>
 <pre><code>## A mmatrix with 4 rows and 4 cols
 ## data type:  float 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf3c9cdaf5 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc464608764 
 ## --- excerpt
 ##      [,1] [,2] [,3] [,4]
-## [1,]    9   29   13    7
-## [2,]   31   21    5   15
-## [3,]   17    3   25   27
-## [4,]   23   33   11   19</code></pre>
+## [1,]    5   29   21   17
+## [2,]   27   11   19   33
+## [3,]   25    7   31    9
+## [4,]   23   13    3   15</code></pre>
 <p>Memory-mapped objects can be used for both operands:</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">B &lt;-<span class="st"> </span>A <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a>
 <a class="sourceLine" id="cb66-2" title="2">C &lt;-<span class="st"> </span>A <span class="op">/</span><span class="st"> </span>B</a>
 <a class="sourceLine" id="cb66-3" title="3">C</a></code></pre></div>
 <pre><code>## A mmatrix with 4 rows and 4 cols
 ## data type:  float 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf5d184c6d 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc442f51b0a 
 ## --- excerpt
 ##           [,1]      [,2]      [,3]      [,4]
-## [1,] 0.8181818 0.9354839 0.8666667 0.7777778
-## [2,] 0.9393939 0.9130435 0.7142857 0.8823529
-## [3,] 0.8947368 0.6000000 0.9259259 0.9310345
-## [4,] 0.9200000 0.9428571 0.8461539 0.9047619</code></pre>
+## [1,] 0.7142857 0.9354839 0.9130435 0.8947368
+## [2,] 0.9310345 0.8461539 0.9047619 0.9428571
+## [3,] 0.9259259 0.7777778 0.9393939 0.8181818
+## [4,] 0.9200000 0.8666667 0.6000000 0.8823529</code></pre>
 <div id="theres-no-type-promotion-in-houba" class="section level3">
 <h3>There’s no type promotion in houba</h3>
 <p>There is no type promotion. If the two operands have different types, the type of the result is the type of the left operand.</p>
@@ -726,14 +721,14 @@ div.sourceCode {
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1">A <span class="op">+</span><span class="st"> </span>B</a></code></pre></div>
 <pre><code>## A mvector of length 11 
 ## data type:  float 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf39e3ad2d 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc44d80c855 
 ## --- excerpt
 ## [1] 0.0 1.1 2.2 3.3 4.4</code></pre>
 <p>and <code>B + A</code> has type <code>integer</code>:</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1">B <span class="op">+</span><span class="st"> </span>A</a></code></pre></div>
 <pre><code>## A mvector of length 11 
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf737dac3a 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc450369b9e 
 ## --- excerpt
 ## [1] 0 1 2 3 4</code></pre>
 </div>
@@ -754,9 +749,9 @@ div.sourceCode {
 <a class="sourceLine" id="cb73-11" title="11">V</a></code></pre></div>
 <pre><code>## A mvector of length 20 
 ## data type:  float 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf121660a4 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc462f96fff 
 ## --- excerpt
-## [1] -0.10810811 -0.08163265 -0.09302326 -0.05479452 -0.17391305</code></pre>
+## [1] -0.57142860 -0.10000000 -0.08510638 -0.05128205 -0.11428571</code></pre>
 </div>
 </div>
 <div id="row-and-columns-operations" class="section level1">
@@ -769,9 +764,9 @@ div.sourceCode {
 <a class="sourceLine" id="cb75-3" title="3"></a>
 <a class="sourceLine" id="cb75-4" title="4"><span class="co"># Row sums and meands</span></a>
 <a class="sourceLine" id="cb75-5" title="5"><span class="kw">rowSums</span>(A)</a></code></pre></div>
-<pre><code>##  [1] 472 548 538 458 463 492 528 686 409 456</code></pre>
+<pre><code>##  [1] 552 388 565 418 521 600 640 408 438 520</code></pre>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1"><span class="kw">rowMeans</span>(A)</a></code></pre></div>
-<pre><code>##  [1] 47.2 54.8 53.8 45.8 46.3 49.2 52.8 68.6 40.9 45.6</code></pre>
+<pre><code>##  [1] 55.2 38.8 56.5 41.8 52.1 60.0 64.0 40.8 43.8 52.0</code></pre>
 <p>Here the result is a R object, because its size does not exceed the value of the option <code>max.size</code>. In the contrary case, it will be a memory-mapped object:</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" title="1"><span class="kw">houba</span>(<span class="dt">max.size =</span> <span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## $max.size
@@ -779,9 +774,9 @@ div.sourceCode {
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="kw">rowSums</span>(A)</a></code></pre></div>
 <pre><code>## A mvector of length 10 
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf627e9057 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc46c8097ce 
 ## --- excerpt
-## [1] 472 548 538 458 463</code></pre>
+## [1] 552 388 565 418 521</code></pre>
 </div>
 <div id="applying-functions" class="section level2">
 <h2>Applying Functions</h2>
@@ -793,23 +788,23 @@ div.sourceCode {
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="kw">apply</span>(A, <span class="dv">1</span>, sd)</a></code></pre></div>
 <pre><code>## A mvector of length 10 
 ## data type:  double 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf25995b62 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc456e45942 
 ## --- excerpt
-## [1] 32.80854 31.99583 29.77993 27.36096 24.77476</code></pre>
+## [1] 32.82208 26.59908 27.66165 28.61157 29.89407</code></pre>
 <p>The data type of this object will be <code>double</code> or <code>integer</code>, depending on the values returned by the function. For example, the <code>sum</code> function will return integers:</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1"><span class="kw">apply</span>(A, <span class="dv">1</span>, sum)</a></code></pre></div>
 <pre><code>## A mvector of length 10 
 ## data type:  integer 
-## Location: file  /tmp/RtmpJrDVxC/mmatrix35eaf5ab6c684 
+## Location: file  /tmp/RtmpIzY6Iv/mmatrixeabc474315a99 
 ## --- excerpt
-## [1] 472 548 538 458 463</code></pre>
+## [1] 552 388 565 418 521</code></pre>
 <p>And if the size of the result is smaller than <code>max.size</code>, a R object is returned:</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="kw">houba</span>(<span class="dt">max.size =</span> <span class="fl">1e6</span>)</a></code></pre></div>
 <pre><code>## $max.size
 ## [1] 1e+06</code></pre>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1"><span class="kw">apply</span>(A, <span class="dv">1</span>, sd)</a></code></pre></div>
-<pre><code>##  [1] 32.80854 31.99583 29.77993 27.36096 24.77476 28.14170 24.67477 26.31941 31.42345
-## [10] 35.18901</code></pre>
+<pre><code>##  [1] 32.82208 26.59908 27.66165 28.61157 29.89407 34.21176 26.91138 29.05091 26.57401
+## [10] 28.07134</code></pre>
 </div>
 </div>
 <div id="contributing-to-houba" class="section level1">
